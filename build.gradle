@@ -286,9 +286,8 @@ targetList.each { target ->
             include('**')
             into('klib/stdlib')
         }
-        from(project(':runtime').file("build/${target}Start/$target/kotlin")) {
-            include("program.kt.bc")
-            rename('program.kt.bc', 'start.kt.bc')
+        from(project(':runtime').file("build/${target}Start.bc")) {
+            rename("${target}Start.bc", 'start.bc')
             into("klib/stdlib/$target/native")
         }
     }
@@ -342,7 +341,7 @@ task bundle(type: Tar) {
 task demo(type: Exec) {
     dependsOn 'dist'
 
-    commandLine './dist/bin/konanc', 'backend.native/tests/runtime/collections/moderately_large_array.kt', '-o', 'build/demo.kexe'
+    commandLine './dist/bin/konanc', 'backend.native/tests/runtime/collections/moderately_large_array.kt', '-o', 'build/demo'
 }
 
 task clean {
