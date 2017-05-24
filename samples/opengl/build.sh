@@ -27,9 +27,9 @@ mkdir $DIR/build/c_interop/
 mkdir $DIR/build/bin/
 
 cinterop -def $DIR/src/c_interop/opengl.def -target $TARGET \
-         -o $DIR/build/c_interop/opengl.kt.bc || exit 1
+         -o $DIR/build/c_interop/opengl || exit 1
 
-konanc -target $TARGET $DIR/src/kotlin-native/OpenGlTeapot.kt -library $DIR/build/c_interop/opengl.kt.bc \
-       -linkerArgs "$LINKER_ARGS" -o $DIR/build/bin/OpenGlTeapot.kexe || exit 1
+konanc -target $TARGET $DIR/src/kotlin-native/OpenGlTeapot.kt -library $DIR/build/c_interop/opengl \
+       -linkerArgs "$LINKER_ARGS" -o $DIR/build/bin/OpenGlTeapot || exit 1
 
 echo "Artifact path is $DIR/build/bin/OpenGlTeapot.kexe"

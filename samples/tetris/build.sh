@@ -47,11 +47,11 @@ mkdir $DIR/build/
 mkdir $DIR/build/c_interop/
 mkdir $DIR/build/bin/
 
-cinterop -def $DIR/src/c_interop/sdl.def -copt "$CFLAGS" -target $TARGET -o $DIR/build/c_interop/sdl.kt.bc || exit 1
+cinterop -def $DIR/src/c_interop/sdl.def -copt "$CFLAGS" -target $TARGET -o $DIR/build/c_interop/sdl || exit 1
 
 konanc $COMPILER_ARGS -target $TARGET $DIR/src/kotlin-native/Tetris.kt \
-       -library $DIR/build/c_interop/sdl.kt.bc -linkerArgs "$LINKER_ARGS" \
-       -o $DIR/build/bin/Tetris.kexe || exit 1
+       -library $DIR/build/c_interop/sdl -linkerArgs "$LINKER_ARGS" \
+       -o $DIR/build/bin/Tetris || exit 1
 
 cp -R $DIR/src/resources $DIR/build/bin
 

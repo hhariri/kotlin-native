@@ -23,9 +23,9 @@ mkdir $DIR/build/
 mkdir $DIR/build/c_interop/
 mkdir $DIR/build/bin/
 
-cinterop -def $DIR/src/c_interop/stdio.def -copt "$CFLAGS" -target $TARGET -o $DIR/build/c_interop/stdio.kt.bc || exit 1
+cinterop -def $DIR/src/c_interop/stdio.def -copt "$CFLAGS" -target $TARGET -o $DIR/build/c_interop/stdio || exit 1
 
-konanc $COMPILER_ARGS -target $TARGET $DIR/src/kotlin-native/CsvParser.kt -library $DIR/build/c_interop/stdio.kt.bc \
-       -o $DIR/build/bin/CsvParser.kexe || exit 1
+konanc $COMPILER_ARGS -target $TARGET $DIR/src/kotlin-native/CsvParser.kt -library $DIR/build/c_interop/stdio \
+       -o $DIR/build/bin/CsvParser || exit 1
 
 echo "Artifact path is $DIR/build/bin/CsvParser.kexe"

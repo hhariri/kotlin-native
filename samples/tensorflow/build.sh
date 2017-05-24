@@ -32,11 +32,11 @@ mkdir $DIR/build/c_interop/
 mkdir $DIR/build/bin/
 
 cinterop -def $DIR/src/c_interop/tensorflow.def -copt "$CFLAGS" -target $TARGET \
-         -o $DIR/build/c_interop/tensorflow.kt.bc || exit 1
+         -o $DIR/build/c_interop/tensorflow || exit 1
 
 konanc $COMPILER_ARGS -target $TARGET $DIR/src/kotlin-native/HelloTensorflow.kt \
-       -library $DIR/build/c_interop/tensorflow.kt.bc \
-       -o $DIR/build/bin/HelloTensorflow.kexe \
+       -library $DIR/build/c_interop/tensorflow \
+       -o $DIR/build/bin/HelloTensorflow \
        -linkerArgs "-L$TF_TARGET_DIRECTORY/lib -ltensorflow" || exit 1
 
 echo "Note: You may need to specify LD_LIBRARY_PATH or DYLD_LIBRARY_PATH env variables to $TF_TARGET_DIRECTORY/lib if the TensorFlow dynamic library cannot be found."
