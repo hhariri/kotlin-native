@@ -1816,7 +1816,7 @@ kotlinNativeInterop {
 
     if (isMac()) {
         opengl {
-            defFile '../../samples/opengl/opengl.def'
+            defFile '../../samples/opengl/src/c_interop/opengl.def'
             linkerOpts '-framework', 'OpenGL', '-framework', 'GLUT'
             flavor 'native'
         }

@@ -307,14 +307,14 @@ class RunInteropKonanTest extends KonanTest {
     }
 
     void compileTest(List<String> filesToCompile, String exe) {
-        String interopBc = exe + "-interop.bc"
+        String interopBc = exe + "-interop"
         runCompiler([interopConf.generatedSrcDir.absolutePath], interopBc, ["-nolink"])
 
         String interopStubsBc = new File(interopConf.nativeLibsDir, interop + "stubs.bc").absolutePath
 
         List<String> linkerArguments = interopConf.linkerOpts // TODO: add arguments from .def file
 
-        List<String> compilerArguments = ["-library", interopBc, "-nativelibrary", interopStubsBc] +
+        List<String> compilerArguments = ["-library", "${interopBc}.klib", "-nativelibrary", interopStubsBc] +
                 linkerArguments.collectMany { ["-linkerArgs", it] }
 
         runCompiler(filesToCompile, exe, compilerArguments)
