@@ -34,6 +34,8 @@ fun main(args: Array<String>) {
     processLib(konanHome, substitutions, parseArgs(args))
 }
 
+private fun String.asArgList() = this.split(Regex("(?<!\\\\)\\Q \\E")).filter { it.isNotEmpty() }
+
 private fun parseArgs(args: Array<String>): Map<String, List<String>> {
     val commandLine = mutableMapOf<String, MutableList<String>>()
     for (index in 0..args.size - 1 step 2) {
@@ -44,8 +46,8 @@ private fun parseArgs(args: Array<String>): Map<String, List<String>> {
         if (index + 1 == args.size) {
             throw IllegalArgumentException("Expected an value after $key")
         }
-        val value = args[index + 1]
-        commandLine[key]?.add(value) ?: commandLine.put(key, mutableListOf(value))
+        val value = args[index + 1].asArgList()
+        commandLine[key]?.addAll(value) ?: commandLine.put(key, value.toMutableList())
     }
     return commandLine
 }

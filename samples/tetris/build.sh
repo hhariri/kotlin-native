@@ -4,7 +4,7 @@ PATH=../../dist/bin:../../bin:$PATH
 DIR=.
 DEPS=$(dirname `type -p konanc`)/../dependencies
 
-CFLAGS_macbook=-I$HOME/Library/Frameworks/SDL2.framework/Headers
+CFLAGS_macbook="-I $HOME/Library/Frameworks/SDL2.framework/Headers"
 LINKER_ARGS_macbook="-F $HOME/Library/Frameworks -framework SDL2"
 COMPILER_ARGS_macbook=
 # Uncomment this if your path to SDL differs from the one above.

@@ -5,8 +5,8 @@ DIR=.
 TF_TARGET_DIRECTORY="$HOME/.konan/third-party/tensorflow"
 TF_TYPE="cpu" # Change to "gpu" for GPU support
 
-CFLAGS_macbook="-I${TF_TARGET_DIRECTORY}/include"
-CFLAGS_linux="-I${TF_TARGET_DIRECTORY}/include"
+CFLAGS_macbook="-I ${TF_TARGET_DIRECTORY}/include"
+CFLAGS_linux="-I ${TF_TARGET_DIRECTORY}/include"
 
 if [ x$TARGET == x ]; then
 case "$OSTYPE" in
